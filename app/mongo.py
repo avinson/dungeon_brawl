@@ -1,10 +1,15 @@
+import os
 from pymongo import MongoClient
 
 from exceptions import NoMonster, NoEncounter
 
+mongodb_host = os.environ.get("MONGODB_HOST", "mongo")
+mongodb_port = os.environ.get("MONGODB_PORT", "27017")
+mongodb_user = os.environ.get("MONGODB_USER", "root")
+mongodb_pass = os.environ.get("MONGODB_PASSWORD", "password")
 
 # create our Mongo connection
-mongo = MongoClient('mongo', username='root', password='password')
+mongo = MongoClient(mongodb_host, username=mongodb_user, password=mongodb_pass)
 
 # connect to collections within our database
 database = mongo.dungeon_brawl
